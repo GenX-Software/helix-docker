@@ -1,11 +1,6 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-set -e
-
-tag=$1
-
-if [[ -z "$tag" ]]; then
-  tag="sourcegraph/helix-p4d:latest"
-fi
-
-docker build -t ${tag} --platform linux/amd64 .
+tag=${1:-helix-p4d:2026.1}
+docker build -t "$tag" --platform linux/amd64 .
+echo "Built $tag"
